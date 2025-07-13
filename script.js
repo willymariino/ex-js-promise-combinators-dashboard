@@ -18,19 +18,19 @@ Stampare i dati in console in un messaggio ben formattato.
 Testa la funzione con la query "london"
 */
 
-async function getDashboardData(id) {
-    const cities = await axios.get(`http://localhost:3333/destinations/${id}`)
-    const airports = await axios.get(`http://localhost:3333/airports/${id}`)
-    const weather = await axios.get(`http://localhost:3333/weathers${id}`)
+async function getDashboardData() {
+    const cities = await axios.get(`http://localhost:3333/destinations/`)
+    const airports = await axios.get(`http://localhost:3333/airports/`)
+    const weather = await axios.get(`http://localhost:3333/weathers`)
     return { ...cities, airports, weather }
 }
 
 (async () => {
 
     try {
-        const cityName = getDashboardData(1)
-        const airports = getDashboardData(1)
-        const weather = getDashboardData(1)
+        const cityName = getDashboardData()
+        const airports = getDashboardData()
+        const weather = getDashboardData()
         const message = await Promise.all([cityName, airports, weather])
         console.log(message)
     }
@@ -38,6 +38,12 @@ async function getDashboardData(id) {
     catch (err) {
         console.error("errore nel recupero delle capitali", error)
     }
+
+    finally {
+        console.log("operazione terminata")
+    }
 }
+
+
 
 )();
