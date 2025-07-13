@@ -18,7 +18,24 @@ Stampare i dati in console in un messaggio ben formattato.
 Testa la funzione con la query "london"
 */
 
-async function getDashboardData(city) {
+async function getDashboardData() {
     const cities = await axios.get("http://localhost:3333/destinations")
-    return cities
+    const airports = await axios.get("http://localhost:3333/airports")
+    const weather = await axios.get("http://localhost:3333/weathers")
+    return { ...cities, airports, weather }
 }
+
+(async () => {
+
+    try {
+        const cityName = getDashboardData()
+
+    }
+
+    catch {
+
+    }
+}
+
+
+)()
