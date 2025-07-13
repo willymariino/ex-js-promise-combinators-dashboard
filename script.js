@@ -30,6 +30,7 @@ async function getDashboardData(query) {
         country: destination.data[0].country,
         airport: airports.data[0].name,
         temperature: weather.data[0].temperature,
+        weather: weather.data[0].weather_description
 
     }
 }
