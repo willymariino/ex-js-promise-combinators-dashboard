@@ -29,13 +29,13 @@ async function getDashboardData(query) {
 
     try {
 
-        const dashboard = getDashboardData("Zurich")
+        const dashboard = getDashboardData("London")
         const dashboardData = await Promise.all([dashboard])
         console.log(dashboardData)
     }
 
     catch (err) {
-        console.error("errore nel recupero delle capitali", error)
+        console.error("errore nel recupero delle capitali", err)
     }
 
     finally {
