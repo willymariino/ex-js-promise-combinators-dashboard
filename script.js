@@ -38,8 +38,12 @@ async function getDashboardData(query) {
 
     try {
 
-        const dashboard = await getDashboardData("London")
-        console.log(dashboard)
+        const data = await getDashboardData("London")
+        console.log(`${data.city} is in ${data.country}
+            Today there are ${data.temperature} degrees and the the weather is ${data.weather}.
+            the main airport is ${data.airport}.`
+
+        )
     }
 
     catch (err) {
