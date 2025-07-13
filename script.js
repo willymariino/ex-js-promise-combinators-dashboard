@@ -22,17 +22,16 @@ async function getDashboardData() {
     const cities = await axios.get(`http://localhost:3333/destinations/`)
     const airports = await axios.get(`http://localhost:3333/airports/`)
     const weather = await axios.get(`http://localhost:3333/weathers`)
-    return { ...cities, airports, weather }
+    return { ...cities.data, airports: airports.data, weather: weather.data }
 }
 
 (async () => {
 
     try {
-        const cityName = getDashboardData()
-        const airports = getDashboardData()
-        const weather = getDashboardData()
-        const message = await Promise.all([cityName, airports, weather])
-        console.log(message)
+
+        const dashboard = getDashboardData()
+        const dashboardData = await Promise.all([dashboard])
+        console.log(dashboardData)
     }
 
     catch (err) {
