@@ -18,7 +18,7 @@ Stampare i dati in console in un messaggio ben formattato.
 Testa la funzione con la query "london"
 */
 
-async function getDashboardData() {
+async function getDashboardData(query) {
     const cities = await axios.get(`http://localhost:3333/destinations/`)
     const airports = await axios.get(`http://localhost:3333/airports/`)
     const weather = await axios.get(`http://localhost:3333/weathers`)
@@ -29,7 +29,7 @@ async function getDashboardData() {
 
     try {
 
-        const dashboard = getDashboardData()
+        const dashboard = getDashboardData("Zurich")
         const dashboardData = await Promise.all([dashboard])
         console.log(dashboardData)
     }
@@ -42,7 +42,5 @@ async function getDashboardData() {
         console.log("operazione terminata")
     }
 }
-
-
 
 )();
