@@ -25,6 +25,11 @@ async function getDashboardData(query) {
         axios.get(`http://localhost:3333/airports?search=${query}`),
         axios.get(`http://localhost:3333/weathers?search=${query}`),
     ])
+
+    console.log("Destinazioni trovate:", destination.data);
+    console.log("Aeroporti trovati:", airports.data);
+    console.log("Meteo trovato:", weather.data);
+
     return {
         city: destination.data[0].name,
         country: destination.data[0].country,
@@ -40,8 +45,10 @@ async function getDashboardData(query) {
     try {
 
         const data = await getDashboardData("London")
-        console.log(`${data.city} is in ${data.country}
-            Today there are ${data.temperature} degrees and the the weather is ${data.weather}.
+        console.log(
+            `${data.city} is in ${data.country}
+            Today there are ${data.temperature} degrees 
+            and the the weather is ${data.weather}.
             the main airport is ${data.airport}.`
 
         )
