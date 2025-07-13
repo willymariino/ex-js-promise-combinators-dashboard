@@ -19,5 +19,6 @@ Testa la funzione con la query "london"
 */
 
 async function getDashboardData(city) {
-
+    const cities = await axios.get("http://localhost:3333/destinations")
+    return cities
 }
