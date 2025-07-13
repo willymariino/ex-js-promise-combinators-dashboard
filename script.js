@@ -19,19 +19,27 @@ Testa la funzione con la query "london"
 */
 
 async function getDashboardData(query) {
-    const cities = await axios.get(`http://localhost:3333/destinations/`)
-    const airports = await axios.get(`http://localhost:3333/airports/`)
-    const weather = await axios.get(`http://localhost:3333/weathers`)
-    return { ...cities.data, airports: airports.data, weather: weather.data }
+
+    const [destination, airports, weather] = await Promise.all([
+        axios.get(`http://localhost:3333/destinations?search=${query}`),
+        axios.get(`http://localhost:3333/airports?search=${query}`),
+        axios.get(`http://localhost:3333/weathers?search=${query}`),
+    ])
+    return {
+        city: destination.data[0].name,
+        country: destination.data[0].country,
+        airport: airports.data[0].name,
+        temperature: weather.data[0].temperature,
+        weather: weather.data[0].weather.description
+    }
 }
 
 (async () => {
 
     try {
 
-        const dashboard = getDashboardData("London")
-        const dashboardData = await Promise.all([dashboard])
-        console.log(dashboardData)
+        const dashboard = await getDashboardData("London")
+        console.log(dashboard)
     }
 
     catch (err) {
